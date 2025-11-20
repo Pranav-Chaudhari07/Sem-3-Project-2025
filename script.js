@@ -505,6 +505,31 @@ document.addEventListener('DOMContentLoaded', function() {
         const password = document.getElementById('signupPassword').value;
         signupUser(name, email, password);
     });
-});
 
+    // Make certification cards clickable & keyboard accessible.
+    // Finds the "Learn More" / anchor inside each .certification-card and makes the whole card open it in a new tab.
+    (function makeCertificationCardsClickable() {
+        document.querySelectorAll('.certification-card').forEach(card => {
+            const link = card.querySelector('a.btn[href], a[href].btn-primary, a[href*="http"]');
+            if (!link) return;
+            card.style.cursor = 'pointer';
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('role', 'link');
+            // Click opens new tab
+            card.addEventListener('click', (e) => {
+                // If the user actually clicked the inner anchor, let default behavior occur
+                const target = e.target;
+                if (target.closest('a')) return;
+                window.open(link.href, '_blank', 'noopener');
+            });
+            // Keyboard support
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    window.open(link.href, '_blank', 'noopener');
+                }
+            });
+        });
+    })();
+});
 const API_URL = 'http://localhost:3000';
