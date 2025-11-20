@@ -16,6 +16,7 @@
 | 11    | Implementation Progress-2                                             | 27-09-2025  |
 | 12    | Project Interaction - Demo with Guide (Database creation and backend) | 3-10-2025   |
 | 13    | Implementation Progress – 3 / Project Monitoring – 2.                 | 14-10-2025  |
+| 14    | Add a certificate button / changes done by pranav                 | 11-11-2025  |
 
 ---
 
