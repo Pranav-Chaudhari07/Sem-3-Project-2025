@@ -20,7 +20,7 @@
 ---
 
 **Project Description:**  
-The *Rental Room Finder for College Students* is a web-based platform designed to help students find affordable and verified rental rooms near their colleges. It enables owners to list rooms and students to search, filter, and book based on their preferences.  
+The "Pathfinder" is a proposed personalized course recommendation system that uses a quiz-based approach to assess user skills, interests, and career goals, and subsequently recommends tailored learning pathways and courses.  
 
 **Technologies Used:**  
 - Frontend: HTML, CSS , JavaScript 
@@ -32,9 +32,9 @@ The *Rental Room Finder for College Students* is a web-based platform designed t
 ---
 
 **Team Members:**  
-- Member 1: Pranav Chaudhari
-- Member 2: Rishabh Swami
-- Member 3: Devansh Chaudhari
-- Member 4: Pratik Nikwade
+- Member 1: Pranav Chaudhari (Developer)
+- Member 2: Rishabh Swami (Frontend)
+- Member 3: Devansh Chaudhari (Documentation)
+- Member 4: Pratik Nikwade (GitHub and Logbook management)
   
 **Guide:** Dr.M.S.Patil
