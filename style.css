@@ -39,12 +39,13 @@
     --option-hover: #2c3e50;
 }
 
+/* Global reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 body {
@@ -129,7 +130,7 @@ header {
 }
 
 .theme-toggle:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.06);
 }
 
 .btn {
@@ -314,7 +315,7 @@ header {
     margin-top: 2rem;
 }
 
-/* Course Recommendations */
+/* Course Cards & Recommendations */
 .courses {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -326,25 +327,44 @@ header {
     border-radius: 8px;
     box-shadow: var(--shadow);
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
 }
 
 .course-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
 }
 
+/* Updated to support IMAGE + ICON both */
 .course-img {
-    height: 160px;
+    height: 180px;
     overflow: hidden;
     background-color: var(--option-bg);
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/* When using <img> inside course-img */
+.course-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+/* When still using <i> (for dynamic recommended courses if any) */
 .course-img i {
     font-size: 3rem;
     color: var(--primary);
+}
+
+/* Hover zoom only when there is an image */
+.course-card:hover .course-img img {
+    transform: scale(1.06);
 }
 
 .course-content {
@@ -360,7 +380,7 @@ header {
 .course-description {
     color: var(--text-light);
     margin-bottom: 1rem;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
 .course-meta {
@@ -370,7 +390,7 @@ header {
     font-size: 0.9rem;
 }
 
-/* Course Details */
+/* Course Details (for expandable details in recommended section) */
 .course-details {
     margin-top: 1rem;
     background: var(--option-bg);
@@ -407,23 +427,39 @@ header {
     border-radius: 8px;
     box-shadow: var(--shadow);
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
 }
 
 .certification-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
 }
 
+/* Updated to work with <img> banner */
 .certification-img {
-    height: 160px;
+    height: 180px;
     overflow: hidden;
     background-color: var(--option-bg);
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
+.certification-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+.certification-card:hover .certification-img img {
+    transform: scale(1.06);
+}
+
+/* If any card still uses <i>, keep support */
 .certification-img i {
     font-size: 3rem;
     color: var(--primary);
@@ -589,19 +625,19 @@ footer {
     .options {
         grid-template-columns: 1fr;
     }
-   
+
     .nav-links {
         display: none;
     }
-   
+
     .steps {
         flex-direction: column;
     }
-   
+
     .footer-content {
         flex-direction: column;
     }
-   
+
     .certifications {
         grid-template-columns: 1fr;
     }
