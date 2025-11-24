@@ -40,7 +40,8 @@ const state = {
                 "https://www.youtube.com/watch?v=UB1O30fR-EE",
                 "https://www.youtube.com/watch?v=PkZNo7MFNFg"
             ],
-            roadmap: "https://roadmap.sh/frontend"
+            roadmap: "https://roadmap.sh/frontend",
+            image: "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=800"
         },
         {
             id: 2,
@@ -56,7 +57,8 @@ const state = {
                 "https://www.youtube.com/watch?v=ua-CiDNNj30",
                 "https://www.youtube.com/watch?v=r-uOLxNrNk8"
             ],
-            roadmap: "https://roadmap.sh/data-science"
+            roadmap: "https://roadmap.sh/data-science",
+            image: "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=800"
         },
         {
             id: 3,
@@ -72,7 +74,8 @@ const state = {
                 "https://www.youtube.com/watch?v=Ovj4hFxko7c",
                 "https://www.youtube.com/watch?v=3jZlI1b80L4"
             ],
-            roadmap: "https://roadmap.sh/ui-ux"
+            roadmap: "https://roadmap.sh/ui-ux",
+            image: "https://images.pexels.com/photos/196645/pexels-photo-196645.jpeg?auto=compress&cs=tinysrgb&w=800"
         },
         {
             id: 4,
@@ -88,7 +91,8 @@ const state = {
                 "https://www.youtube.com/watch?v=nCgQDjiotG0",
                 "https://www.youtube.com/watch?v=V0vQnQSrC-g"
             ],
-            roadmap: "https://roadmap.sh/marketing"
+            roadmap: "https://roadmap.sh/marketing",
+            image: "https://images.pexels.com/photos/3182832/pexels-photo-3182832.jpeg?auto=compress&cs=tinysrgb&w=800"
         },
         {
             id: 5,
@@ -104,7 +108,8 @@ const state = {
                 "https://www.youtube.com/watch?v=vo4pMVb0R6M",
                 "https://www.youtube.com/watch?v=Q3pzbFjYy5w"
             ],
-            roadmap: "https://www.coursera.org/articles/psychology-careers"
+            roadmap: "https://www.coursera.org/articles/psychology-careers",
+            image: "https://images.pexels.com/photos/3184643/pexels-photo-3184643.jpeg?auto=compress&cs=tinysrgb&w=800"
         },
         {
             id: 6,
@@ -120,7 +125,8 @@ const state = {
                 "https://www.youtube.com/watch?v=7gkF6QpQ6uA",
                 "https://www.youtube.com/watch?v=1I3hMwQU6GU"
             ],
-            roadmap: "https://corporatefinanceinstitute.com/resources/accounting/accounting-career-paths/"
+            roadmap: "https://corporatefinanceinstitute.com/resources/accounting/accounting-career-paths/",
+            image: "https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=800"
         },
         {
             id: 7,
@@ -136,7 +142,8 @@ const state = {
                 "https://www.youtube.com/watch?v=piQKrwS6Yms",
                 "https://www.youtube.com/watch?v=QH2T6YkQb6A"
             ],
-            roadmap: "https://www.careerexplorer.com/careers/graphic-designer/"
+            roadmap: "https://www.careerexplorer.com/careers/graphic-designer/",
+            image: "https://images.pexels.com/photos/620822/pexels-photo-620822.jpeg?auto=compress&cs=tinysrgb&w=800"
         },
         {
             id: 8,
@@ -152,7 +159,8 @@ const state = {
                 "https://www.youtube.com/watch?v=Gv9_4yMHFhI",
                 "https://www.youtube.com/watch?v=ukzFI9rgwfU"
             ],
-            roadmap: "https://roadmap.sh/ai"
+            roadmap: "https://roadmap.sh/ai",
+            image: "https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=800"
         }
     ],
     userAnswers: []
@@ -237,48 +245,40 @@ function navigateTo(sectionId) {
 
 // Authentication functions
 function loginUser(email, password) {
-    // Simple validation
     if (!email || !password) {
         alert('Please enter both email and password');
         return;
     }
     
-    // In a real app, this would communicate with a backend
     state.currentUser = {
         name: email.split('@')[0],
         email: email
     };
     
-    // Update UI
     elements.userAvatar.textContent = state.currentUser.name.charAt(0).toUpperCase();
     elements.username.textContent = state.currentUser.name;
     document.getElementById('authButtons').style.display = 'none';
     elements.userProfile.style.display = 'flex';
     
-    // Return to home page
     showPage('home');
 }
 
 function signupUser(name, email, password) {
-    // Simple validation
     if (!name || !email || !password) {
         alert('Please fill all fields');
         return;
     }
     
-    // In a real app, this would communicate with a backend
     state.currentUser = {
         name: name,
         email: email
     };
     
-    // Update UI
     elements.userAvatar.textContent = state.currentUser.name.charAt(0).toUpperCase();
     elements.username.textContent = state.currentUser.name;
     document.getElementById('authButtons').style.display = 'none';
     elements.userProfile.style.display = 'flex';
     
-    // Return to home page
     showPage('home');
 }
 
@@ -298,12 +298,14 @@ function startQuiz() {
 
 function showQuizQuestion(index) {
     if (index >= state.quizData.length) {
+        // Fill progress bar fully on finish
+        elements.progressBar.style.width = '100%';
         showRecommendations();
         return;
     }
     
     const question = state.quizData[index];
-    const progress = ((index) / state.quizData.length) * 100;
+    const progress = (index / state.quizData.length) * 100;
     elements.progressBar.style.width = `${progress}%`;
     
     let optionsHTML = '';
@@ -331,24 +333,19 @@ function showQuizQuestion(index) {
     // Add event listeners to options
     document.querySelectorAll('.option').forEach(option => {
         option.addEventListener('click', function() {
-            // Remove selected class from all options
             document.querySelectorAll('.option').forEach(opt => {
                 opt.classList.remove('selected');
             });
             
-            // Add selected class to clicked option
             this.classList.add('selected');
-            
-            // Enable next button
             document.getElementById('nextQuestion').disabled = false;
             
-            // Store the selected answer
             const selectedIndex = parseInt(this.getAttribute('data-index'));
             state.userAnswers[index] = question.options[selectedIndex];
         });
     });
     
-    // Add event listeners to navigation buttons
+    // Navigation buttons
     if (index > 0) {
         document.getElementById('prevQuestion').addEventListener('click', function() {
             showQuizQuestion(index - 1);
@@ -361,19 +358,16 @@ function showQuizQuestion(index) {
 }
 
 function showRecommendations() {
-    // Calculate recommendations based on user answers
     const recommendations = calculateRecommendations();
 
-    // Show recommendations section
     showPage('recommended-courses');
 
-    // Display recommended courses
     let coursesHTML = '';
     recommendations.forEach(course => {
         coursesHTML += `
             <div class="course-card" data-course-id="${course.id}" style="cursor:pointer;">
                 <div class="course-img">
-                    <i class="fas fa-graduation-cap"></i>
+                    <img src="${course.image}" alt="${course.title}">
                 </div>
                 <div class="course-content">
                     <h3 class="course-title">${course.title}</h3>
@@ -390,25 +384,31 @@ function showRecommendations() {
 
     elements.recommendedCoursesList.innerHTML = coursesHTML;
 
-    // Add click event to each card
+    // Click to show details
     document.querySelectorAll('.course-card').forEach(card => {
         card.addEventListener('click', function() {
             // Collapse any open details
             document.querySelectorAll('.course-details').forEach(d => d.style.display = 'none');
-            // Expand this card's details
+
             const courseId = parseInt(this.getAttribute('data-course-id'));
             const course = state.courseDatabase.find(c => c.id === courseId);
             const detailsDiv = this.querySelector('.course-details');
+
             detailsDiv.innerHTML = `
                 <div class="related-section">
                     <h4>Jobs</h4>
-                    <ul>${(course.jobs || []).map(j => `<li>${j}</li>`).join('')}</ul>
+                    <ul>
+                        ${(course.jobs || []).map(j => `<li>${j}</li>`).join('')}
+                    </ul>
+
                     <h4>Cheatsheet</h4>
                     <a href="${course.cheatsheet}" target="_blank">${course.cheatsheet}</a>
+
                     <h4>YouTube Videos</h4>
                     <ul>
                         ${(course.youtube || []).map(url => `<li><a href="${url}" target="_blank">${url}</a></li>`).join('')}
                     </ul>
+
                     <h4>Roadmap</h4>
                     <a href="${course.roadmap}" target="_blank">${course.roadmap}</a>
                 </div>
@@ -419,30 +419,24 @@ function showRecommendations() {
 }
 
 function calculateRecommendations() {
-    // Simple recommendation algorithm based on user answers
-    // In a real application, this would be much more sophisticated
-    
     const fieldInterest = state.userAnswers[0]; // Technology, Business, Design, etc.
     const skillLevel = state.userAnswers[1]; // Beginner, Intermediate, etc.
     
-    // Filter courses by field and skill level
     let filteredCourses = state.courseDatabase.filter(course => {
         return course.field === fieldInterest && course.level === skillLevel;
     });
     
-    // If not enough courses match exactly, broaden the criteria
     if (filteredCourses.length < 3) {
         filteredCourses = state.courseDatabase.filter(course => {
             return course.field === fieldInterest;
         });
     }
     
-    // If still not enough, just take random courses
     if (filteredCourses.length < 3) {
         filteredCourses = [...state.courseDatabase].sort(() => 0.5 - Math.random()).slice(0, 4);
     }
     
-    return filteredCourses.slice(0, 4); // Return up to 4 recommendations
+    return filteredCourses.slice(0, 4);
 }
 
 // Event Listeners
@@ -506,8 +500,7 @@ document.addEventListener('DOMContentLoaded', function() {
         signupUser(name, email, password);
     });
 
-    // Make certification cards clickable & keyboard accessible.
-    // Finds the "Learn More" / anchor inside each .certification-card and makes the whole card open it in a new tab.
+    // Certification cards clickable & keyboard accessible
     (function makeCertificationCardsClickable() {
         document.querySelectorAll('.certification-card').forEach(card => {
             const link = card.querySelector('a.btn[href], a[href].btn-primary, a[href*="http"]');
@@ -515,14 +508,13 @@ document.addEventListener('DOMContentLoaded', function() {
             card.style.cursor = 'pointer';
             card.setAttribute('tabindex', '0');
             card.setAttribute('role', 'link');
-            // Click opens new tab
+
             card.addEventListener('click', (e) => {
-                // If the user actually clicked the inner anchor, let default behavior occur
                 const target = e.target;
                 if (target.closest('a')) return;
                 window.open(link.href, '_blank', 'noopener');
             });
-            // Keyboard support
+
             card.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -532,4 +524,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     })();
 });
+
+// Currently unused, but kept if you plan backend integration
 const API_URL = 'http://localhost:3000';

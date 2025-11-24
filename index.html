@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pathfinder - Course Recommendation System</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Pathfinder is a personalized course recommendation system that helps students and professionals find the perfect learning path based on their interests, skills, and goals.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <!-- Header -->
@@ -16,14 +17,17 @@
                     <i class="fas fa-route"></i>
                     <h1>Pathfinder</h1>
                 </div>
+
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#how-it-works">How It Works</a></li>
                     <li><a href="#quiz">Take Quiz</a></li>
                     <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#bookmarks">Bookmarks</a></li>
                 </ul>
+
                 <div class="auth-buttons">
-                    <button class="theme-toggle" id="themeToggle">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
                         <i class="fas fa-moon"></i>
                     </button>
                     <div id="authButtons">
@@ -31,6 +35,7 @@
                         <button class="btn btn-primary" id="signupBtn">Sign Up</button>
                     </div>
                 </div>
+
                 <div class="user-profile" id="userProfile" style="display: none;">
                     <div class="user-avatar" id="userAvatar">U</div>
                     <span id="username">User</span>
@@ -41,72 +46,141 @@
     </header>
 
     <!-- Home Page -->
-    <section id="home" class="active-page">
+    <section id="home" class="active-page section">
         <div class="hero">
             <div class="container">
                 <h2>Find Your Perfect Learning Path</h2>
-                <p>Pathfinder helps you discover courses tailored to your interests, skills, and career goals through our personalized recommendation system.</p>
+                <p>
+                    Pathfinder helps you discover curated courses aligned with your interests,
+                    current skills, and long-term career goals using a smart recommendation engine.
+                </p>
                 <button class="btn btn-primary" id="startQuizBtn">Start Course Quiz</button>
             </div>
         </div>
 
+        <!-- Popular Courses -->
         <div class="section">
             <div class="container">
                 <div class="section-title">
                     <h2>Popular Courses</h2>
-                    <p>Discover courses that other students are finding valuable for their career growth</p>
+                    <p>
+                        Professionally curated courses that learners frequently choose to kickstart or upgrade their tech careers.
+                    </p>
                 </div>
+
                 <div class="courses">
+                    <!-- Course 1: Web Development -->
                     <div class="course-card">
                         <div class="course-img">
-                            <i class="fas fa-laptop-code"></i>
+                            <img
+                                src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=800"
+                                alt="Web Development Fundamentals"
+                            />
                         </div>
                         <div class="course-content">
                             <h3 class="course-title">Web Development Fundamentals</h3>
-                            <p class="course-description">Learn HTML, CSS, and JavaScript to build responsive websites from scratch.</p>
+                            <p class="course-description">
+                                Learn HTML, CSS, and JavaScript to build clean, responsive, and modern websites from scratch.
+                            </p>
                             <div class="course-meta">
                                 <span><i class="far fa-clock"></i> 8 weeks</span>
                                 <span><i class="fas fa-user-graduate"></i> Beginner</span>
                             </div>
+
+                            <!-- Bookmark button -->
+                            <button class="btn bookmark-btn" data-id="course-web-development-fundamentals">
+                                <i class="fas fa-bookmark"></i> Bookmark
+                            </button>
                         </div>
                     </div>
+
+                    <!-- Course 2: Data Science -->
                     <div class="course-card">
                         <div class="course-img">
-                            <i class="fas fa-chart-line"></i>
+                            <img
+                                src="https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=800"
+                                alt="Data Science Essentials"
+                            />
                         </div>
                         <div class="course-content">
                             <h3 class="course-title">Data Science Essentials</h3>
-                            <p class="course-description">Master data analysis, visualization, and basic machine learning concepts.</p>
+                            <p class="course-description">
+                                Master data analysis, visualization, and core machine learning concepts using Python and industry tools.
+                            </p>
                             <div class="course-meta">
                                 <span><i class="far fa-clock"></i> 10 weeks</span>
                                 <span><i class="fas fa-user-graduate"></i> Intermediate</span>
                             </div>
+
+                            <!-- Bookmark button -->
+                            <button class="btn bookmark-btn" data-id="course-data-science-essentials">
+                                <i class="fas fa-bookmark"></i> Bookmark
+                            </button>
                         </div>
                     </div>
+
+                    <!-- Course 3: UI/UX Design -->
                     <div class="course-card">
                         <div class="course-img">
-                            <i class="fas fa-paint-brush"></i>
+                            <img
+                                src="https://images.pexels.com/photos/196645/pexels-photo-196645.jpeg?auto=compress&cs=tinysrgb&w=800"
+                                alt="UI/UX Design Principles"
+                            />
                         </div>
                         <div class="course-content">
                             <h3 class="course-title">UI/UX Design Principles</h3>
-                            <p class="course-description">Create intuitive and beautiful user interfaces with proven design methodologies.</p>
+                            <p class="course-description">
+                                Learn to design intuitive, user-centered interfaces with wireframes, prototypes, and modern UX methodologies.
+                            </p>
                             <div class="course-meta">
                                 <span><i class="far fa-clock"></i> 6 weeks</span>
                                 <span><i class="fas fa-user-graduate"></i> Beginner</span>
                             </div>
+
+                            <!-- Bookmark button -->
+                            <button class="btn bookmark-btn" data-id="course-ui-ux-design-principles">
+                                <i class="fas fa-bookmark"></i> Bookmark
+                            </button>
                         </div>
                     </div>
-                </div>
+
+                    <!-- Course 4: Machine Learning Basics -->
+                    <div class="course-card">
+                        <div class="course-img">
+                            <img
+                                src="https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=800"
+                                alt="Machine Learning Basics"
+                            />
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">Machine Learning Basics</h3>
+                            <p class="course-description">
+                                Get started with supervised and unsupervised learning, model evaluation, and practical ML workflows.
+                            </p>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> 12 weeks</span>
+                                <span><i class="fas fa-user-graduate"></i> Advanced</span>
+                            </div>
+
+                            <!-- Bookmark button -->
+                            <button class="btn bookmark-btn" data-id="course-machine-learning-basics">
+                                <i class="fas fa-bookmark"></i> Bookmark
+                            </button>
+                        </div>
+                    </div>
+                </div> <!-- .courses -->
             </div>
         </div>
     </section>
 
     <!-- How It Works Section -->
-    <section id="how-it-works" class="section" style="display: none;">
+    <section id="how-it-works" class="active-page section" style="display: none;">
         <div class="container">
             <div class="section-title">
                 <h2>How Pathfinder Works</h2>
-                <p>Our smart recommendation system matches you with the perfect courses in just a few steps</p>
+                <p>
+                    Our intelligent recommendation engine maps your interests and skills to the most relevant courses in just a few steps.
+                </p>
             </div>
             <div class="steps">
                 <div class="step">
@@ -114,32 +188,34 @@
                         <i class="fas fa-user-circle"></i>
                     </div>
                     <h3>Create Your Profile</h3>
-                    <p>Sign up and tell us about your academic background and interests.</p>
+                    <p>Sign up and tell us about your academic background, tech interests, and preferred learning pace.</p>
                 </div>
                 <div class="step">
                     <div class="step-icon">
                         <i class="fas fa-question-circle"></i>
                     </div>
                     <h3>Take the Assessment</h3>
-                    <p>Complete our short quiz to help us understand your learning preferences.</p>
+                    <p>Complete a short, structured quiz so we can understand your learning preferences and career direction.</p>
                 </div>
                 <div class="step">
                     <div class="step-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
                     <h3>Get Recommendations</h3>
-                    <p>Receive personalized course suggestions based on your unique profile.</p>
+                    <p>Receive personalized course suggestions with roadmaps, resources, and role-based career insights.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Quiz Section -->
-    <section id="quiz" class="section" style="display: none;">
+    <section id="quiz" class="active-page section" style="display: none;">
         <div class="container">
             <div class="section-title">
                 <h2>Course Recommendation Quiz</h2>
-                <p>Answer a few questions to help us understand your learning preferences and goals</p>
+                <p>
+                    Answer a few targeted questions to help us understand your learning preferences and long-term goals.
+                </p>
             </div>
             <div class="quiz-container">
                 <div class="quiz-progress">
@@ -153,30 +229,38 @@
     </section>
 
     <!-- Recommended Courses Section -->
-    <section id="recommended-courses" class="section" style="display: none;">
+    <section id="recommended-courses" class="active-page section" style="display: none;">
         <div class="container">
             <div class="section-title">
                 <h2>Your Recommended Courses</h2>
-                <p>Based on your quiz responses, we think these courses would be a great fit for you</p>
+                <p>
+                    Based on your quiz responses, these courses match your interests, skill level, and learning goals.
+                </p>
             </div>
             <div class="courses" id="recommendedCoursesList">
-                <!-- Recommended courses will be inserted -->
+                <!-- Recommended courses will be inserted dynamically by script.js -->
             </div>
         </div>
     </section>
 
-    <!-- Certifications Section -->
-    <section id="certifications" class="section" style="display: none;">
+    <!-- Certifications Section (FULL LIST) -->
+    <section id="certifications" class="active-page section" style="display: none;">
         <div class="container">
             <div class="section-title">
                 <h2>Industry Certifications</h2>
-                <p>Explore valuable certifications that can boost your career and validate your skills</p>
+                <p>
+                    Explore globally recognized certifications that can boost your resume and validate your technical skills.
+                </p>
             </div>
+
             <div class="certifications">
-                <!-- Expanded industry-level certifications -->
+                <!-- AWS Solutions Architect -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fab fa-aws"></i>
+                        <img 
+                            src="https://images.pexels.com/photos/1181460/pexels-photo-1181460.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="AWS Solutions Architect"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">AWS Certified Solutions Architect – Associate</h3>
@@ -185,6 +269,12 @@
                             <span><i class="far fa-clock"></i> 3-6 months prep</span>
                             <span><i class="fas fa-building"></i> Amazon Web Services</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-aws-solutions-architect-associate">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Multiple choice, ~130 minutes</p>
@@ -195,9 +285,13 @@
                     </div>
                 </div>
 
+                <!-- AWS Developer -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fab fa-aws"></i>
+                        <img 
+                            src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="AWS Developer Associate"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">AWS Certified Developer – Associate</h3>
@@ -206,6 +300,12 @@
                             <span><i class="far fa-clock"></i> 2-4 months prep</span>
                             <span><i class="fas fa-code"></i> Developers</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-aws-developer-associate">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Multiple choice, ~130 minutes</p>
@@ -216,9 +316,13 @@
                     </div>
                 </div>
 
+                <!-- Google Cloud Architect -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fab fa-google"></i>
+                        <img 
+                            src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="Google Cloud Architect"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">Google Cloud Professional Cloud Architect</h3>
@@ -227,6 +331,12 @@
                             <span><i class="far fa-clock"></i> 3-6 months prep</span>
                             <span><i class="fas fa-building"></i> Google Cloud</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-google-cloud-architect">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Case-based, 2 hours</p>
@@ -237,9 +347,13 @@
                     </div>
                 </div>
 
+                <!-- Google Data Engineer -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fab fa-google"></i>
+                        <img 
+                            src="https://images.pexels.com/photos/1181672/pexels-photo-1181672.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="Google Professional Data Engineer"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">Google Professional Data Engineer</h3>
@@ -248,6 +362,12 @@
                             <span><i class="far fa-clock"></i> 4-6 months prep</span>
                             <span><i class="fas fa-database"></i> Data</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-google-professional-data-engineer">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Multiple choice, 2 hours</p>
@@ -258,9 +378,13 @@
                     </div>
                 </div>
 
+                <!-- Azure Fundamentals -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fab fa-microsoft"></i>
+                        <img 
+                            src="https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="Azure Fundamentals"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">Microsoft Certified: Azure Fundamentals (AZ-900)</h3>
@@ -269,6 +393,12 @@
                             <span><i class="far fa-clock"></i> 1-2 months prep</span>
                             <span><i class="fas fa-building"></i> Microsoft</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-azure-fundamentals-az900">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Multiple choice, ~60 minutes</p>
@@ -279,9 +409,13 @@
                     </div>
                 </div>
 
+                <!-- Azure Administrator -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fab fa-microsoft"></i>
+                        <img 
+                            src="https://images.pexels.com/photos/1181466/pexels-photo-1181466.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="Azure Administrator"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">Microsoft Certified: Azure Administrator Associate (AZ-104)</h3>
@@ -290,6 +424,12 @@
                             <span><i class="far fa-clock"></i> 3-5 months prep</span>
                             <span><i class="fas fa-tools"></i> Infrastructure</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-azure-administrator-az104">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Multiple choice, ~120 minutes</p>
@@ -300,9 +440,13 @@
                     </div>
                 </div>
 
+                <!-- CompTIA Security+ -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fas fa-shield-alt"></i>
+                        <img 
+                            src="https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="CompTIA Security+"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">CompTIA Security+</h3>
@@ -311,6 +455,12 @@
                             <span><i class="far fa-clock"></i> 2-4 months prep</span>
                             <span><i class="fas fa-user-shield"></i> CompTIA</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-comptia-security-plus">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Multiple choice, ~90 minutes</p>
@@ -321,9 +471,13 @@
                     </div>
                 </div>
 
+                <!-- CISSP -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fas fa-lock"></i>
+                        <img 
+                            src="https://images.pexels.com/photos/5380640/pexels-photo-5380640.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="CISSP"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">Certified Information Systems Security Professional (CISSP)</h3>
@@ -332,6 +486,12 @@
                             <span><i class="far fa-clock"></i> 6+ months prep</span>
                             <span><i class="fas fa-university"></i> (ISC)²</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-cissp">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Multiple choice, ~3 hours</p>
@@ -342,9 +502,13 @@
                     </div>
                 </div>
 
+                <!-- CEH -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fas fa-user-secret"></i>
+                        <img 
+                            src="https://images.pexels.com/photos/5380611/pexels-photo-5380611.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="Certified Ethical Hacker"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">Certified Ethical Hacker (CEH)</h3>
@@ -353,6 +517,12 @@
                             <span><i class="far fa-clock"></i> 2-4 months prep</span>
                             <span><i class="fas fa-user-secret"></i> EC-Council</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-ceh">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Multiple choice, ~4 hours</p>
@@ -363,9 +533,13 @@
                     </div>
                 </div>
 
+                <!-- Docker DCA -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fab fa-docker"></i>
+                        <img 
+                            src="https://images.pexels.com/photos/1181670/pexels-photo-1181670.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="Docker Certified Associate"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">Docker Certified Associate (DCA)</h3>
@@ -374,6 +548,12 @@
                             <span><i class="far fa-clock"></i> 1-3 months prep</span>
                             <span><i class="fas fa-box"></i> Containers</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-docker-dca">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Multiple choice, practical tasks</p>
@@ -384,9 +564,13 @@
                     </div>
                 </div>
 
+                <!-- CCNA -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fas fa-network-wired"></i>
+                        <img 
+                            src="https://images.pexels.com/photos/5999829/pexels-photo-5999829.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="Cisco CCNA"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">Cisco Certified Network Associate (CCNA)</h3>
@@ -395,6 +579,12 @@
                             <span><i class="far fa-clock"></i> 4-6 months prep</span>
                             <span><i class="fas fa-building"></i> Cisco</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-ccna">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Multiple choice, ~120 minutes</p>
@@ -405,9 +595,13 @@
                     </div>
                 </div>
 
+                <!-- RHCE -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fas fa-server"></i>
+                        <img 
+                            src="https://images.pexels.com/photos/5380647/pexels-photo-5380647.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="Red Hat Certified Engineer"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">Red Hat Certified Engineer (RHCE)</h3>
@@ -416,6 +610,12 @@
                             <span><i class="far fa-clock"></i> 3-6 months prep</span>
                             <span><i class="fas fa-linux"></i> Red Hat</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-rhce">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Performance-based lab exam</p>
@@ -426,9 +626,13 @@
                     </div>
                 </div>
 
+                <!-- Oracle Java -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fas fa-code"></i>
+                        <img 
+                            src="https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="Oracle Java Professional"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">Oracle Certified Professional, Java SE</h3>
@@ -437,6 +641,12 @@
                             <span><i class="far fa-clock"></i> 2-4 months prep</span>
                             <span><i class="fab fa-java"></i> Oracle</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-oracle-ocp-java">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Multiple choice, varies by level</p>
@@ -447,9 +657,13 @@
                     </div>
                 </div>
 
+                <!-- PMP -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fas fa-project-diagram"></i>
+                        <img 
+                            src="https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="Project Management Professional"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">Project Management Professional (PMP)</h3>
@@ -458,6 +672,12 @@
                             <span><i class="far fa-clock"></i> 3-6 months prep</span>
                             <span><i class="fas fa-university"></i> PMI</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-pmp">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Multiple choice, ~230 minutes</p>
@@ -468,9 +688,13 @@
                     </div>
                 </div>
 
+                <!-- ITIL -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fas fa-business-time"></i>
+                        <img 
+                            src="https://images.pexels.com/photos/3184454/pexels-photo-3184454.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="ITIL Foundation"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">ITIL Foundation</h3>
@@ -479,6 +703,12 @@
                             <span><i class="far fa-clock"></i> 1-2 months prep</span>
                             <span><i class="fas fa-cogs"></i> AXELOS</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-itil-foundation">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Multiple choice, ~60 minutes</p>
@@ -489,9 +719,13 @@
                     </div>
                 </div>
 
+                <!-- TensorFlow Developer -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fas fa-brain"></i>
+                        <img 
+                            src="https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="TensorFlow Developer Certificate"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">TensorFlow Developer Certificate</h3>
@@ -500,6 +734,12 @@
                             <span><i class="far fa-clock"></i> 2-4 months prep</span>
                             <span><i class="fas fa-robot"></i> TensorFlow</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-tensorflow-developer">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Practical programming exam</p>
@@ -510,9 +750,13 @@
                     </div>
                 </div>
 
+                <!-- CKA -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fas fa-project-diagram"></i>
+                        <img 
+                            src="https://images.pexels.com/photos/1181277/pexels-photo-1181277.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="Certified Kubernetes Administrator"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">Certified Kubernetes Administrator (CKA)</h3>
@@ -521,6 +765,12 @@
                             <span><i class="far fa-clock"></i> 2-4 months prep</span>
                             <span><i class="fas fa-cloud"></i> CNCF</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-cka">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Performance-based lab exam</p>
@@ -531,9 +781,13 @@
                     </div>
                 </div>
 
+                <!-- Salesforce Admin -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fab fa-salesforce"></i>
+                        <img 
+                            src="https://images.pexels.com/photos/1181292/pexels-photo-1181292.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="Salesforce Administrator"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">Salesforce Certified Administrator</h3>
@@ -542,6 +796,12 @@
                             <span><i class="far fa-clock"></i> 1-3 months prep</span>
                             <span><i class="fas fa-building"></i> Salesforce</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-salesforce-admin">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Multiple choice, ~105 minutes</p>
@@ -552,9 +812,13 @@
                     </div>
                 </div>
 
+                <!-- Tableau Specialist -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fas fa-chart-bar"></i>
+                        <img 
+                            src="https://images.pexels.com/photos/590020/pexels-photo-590020.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="Tableau Desktop Specialist"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">Tableau Desktop Specialist</h3>
@@ -563,6 +827,12 @@
                             <span><i class="far fa-clock"></i> 1-2 months prep</span>
                             <span><i class="fas fa-chart-pie"></i> Tableau</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-tableau-desktop-specialist">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Multiple choice, ~60 minutes</p>
@@ -573,9 +843,13 @@
                     </div>
                 </div>
 
+                <!-- Azure Data Engineer -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fas fa-database"></i>
+                        <img 
+                            src="https://images.pexels.com/photos/3730760/pexels-photo-3730760.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="Azure Data Engineer"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">Microsoft Certified: Azure Data Engineer Associate</h3>
@@ -584,6 +858,12 @@
                             <span><i class="far fa-clock"></i> 3-5 months prep</span>
                             <span><i class="fas fa-building"></i> Microsoft</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-azure-data-engineer-associate">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Multiple choice, scenario-based</p>
@@ -594,9 +874,13 @@
                     </div>
                 </div>
 
+                <!-- SAS Data Scientist -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fas fa-user-graduate"></i>
+                        <img 
+                            src="https://images.pexels.com/photos/5561913/pexels-photo-5561913.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                            alt="SAS Certified Data Scientist"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">SAS Certified Data Scientist</h3>
@@ -605,6 +889,12 @@
                             <span><i class="far fa-clock"></i> 4-6 months prep</span>
                             <span><i class="fas fa-flask"></i> SAS</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-sas-certified-data-scientist">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Multiple choice and practical</p>
@@ -615,9 +905,13 @@
                     </div>
                 </div>
 
+                <!-- CISM -->
                 <div class="certification-card">
                     <div class="certification-img">
-                        <i class="fas fa-certificate"></i>
+                        <img
+                            src="https://images.pexels.com/photos/5380605/pexels-photo-5380605.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Certified Information Security Manager"
+                        />
                     </div>
                     <div class="certification-content">
                         <h3 class="certification-title">Certified Information Security Manager (CISM)</h3>
@@ -626,6 +920,12 @@
                             <span><i class="far fa-clock"></i> 6+ months prep</span>
                             <span><i class="fas fa-shield-alt"></i> ISACA</span>
                         </div>
+
+                        <!-- Bookmark button -->
+                        <button class="btn bookmark-btn" data-id="cert-cism">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+
                         <div class="certification-details">
                             <h4>Exam Details</h4>
                             <p>Multiple choice, ~4 hours</p>
@@ -636,8 +936,7 @@
                     </div>
                 </div>
 
-                <!-- add more certifications as needed -->
-            </div>
+            </div> <!-- .certifications -->
         </div>
     </section>
 
@@ -649,15 +948,16 @@
                     <h2 class="section-title">Login to Your Account</h2>
                     <div class="form-group">
                         <label for="loginEmail">Email</label>
-                        <input type="email" id="loginEmail" placeholder="Enter your email">
+                        <input type="email" id="loginEmail" placeholder="Enter your email" />
                     </div>
                     <div class="form-group">
                         <label for="loginPassword">Password</label>
-                        <input type="password" id="loginPassword" placeholder="Enter your password">
+                        <input type="password" id="loginPassword" placeholder="Enter your password" />
                     </div>
                     <button class="btn btn-primary" id="loginSubmit">Login</button>
                     <p style="margin-top: 1rem; text-align: center;">
-                        Don't have an account? <a href="#" id="goToSignup">Sign up here</a>
+                        Don't have an account?
+                        <a href="#" id="goToSignup">Sign up here</a>
                     </p>
                 </div>
             </div>
@@ -672,32 +972,35 @@
                     <h2 class="section-title">Create an Account</h2>
                     <div class="form-group">
                         <label for="signupName">Full Name</label>
-                        <input type="text" id="signupName" placeholder="Enter your full name">
+                        <input type="text" id="signupName" placeholder="Enter your full name" />
                     </div>
                     <div class="form-group">
                         <label for="signupEmail">Email</label>
-                        <input type="email" id="signupEmail" placeholder="Enter your email">
+                        <input type="email" id="signupEmail" placeholder="Enter your email" />
                     </div>
                     <div class="form-group">
                         <label for="signupPassword">Password</label>
-                        <input type="password" id="signupPassword" placeholder="Create a password">
+                        <input type="password" id="signupPassword" placeholder="Create a password" />
                     </div>
                     <button class="btn btn-primary" id="signupSubmit">Sign Up</button>
                     <p style="margin-top: 1rem; text-align: center;">
-                        Already have an account? <a href="#" id="goToLogin">Login here</a>
+                        Already have an account?
+                        <a href="#" id="goToLogin">Login here</a>
                     </p>
                 </div>
             </div>
         </div>
     </section>
-
+    
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Pathfinder</h3>
-                    <p>Your personalized course recommendation system to find the perfect learning path.</p>
+                    <p>
+                        Your personalized course recommendation system to find the perfect learning path for your future.
+                    </p>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
@@ -711,18 +1014,27 @@
                 <div class="footer-section">
                     <h3>Contact Us</h3>
                     <ul>
-                        <li><i class="fas fa-envelope"></i> chaudharipranav057@gmail.com
-                             <br>nikwadepratik@gmail.com</li>
-                       
+                        <li>
+                            <i class="fas fa-envelope"></i><br />
+                            chaudharipranav057@gmail.com
+                            <br />nikwadepratik@gmail.com
+                            <br />devanshchaudhari13@gmail.com
+                            <br />rishabswami@gmail.com
+                        </li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; Devansh chaudhari<br>Pranav Chaudhari<br>Nikwade Pratik<br>Rishabh Swami </p>
+                <p>
+                    &copy; Devansh Chaudhari<br />
+                    Pranav Chaudhari<br />
+                    Nikwade Pratik<br />
+                    Rishabh Swami
+                </p>
             </div>
         </div>
     </footer>
-   
+
     <script src="script.js"></script>
 </body>
 </html>
