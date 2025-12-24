@@ -642,3 +642,129 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+/* ---------------------------------------------
+   BOOKMARK BUTTON (GLOBAL STYLE)
+--------------------------------------------- */
+
+.bookmark-btn {
+    margin-top: 0.8rem;
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+
+    background-color: var(--option-bg);
+    color: var(--text-dark);
+    border: 1px solid var(--input-border);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    transition: 0.3s ease;
+}
+
+.bookmark-btn i {
+    font-size: 1rem;
+}
+
+/* Hover */
+.bookmark-btn:hover {
+    background-color: var(--option-hover);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* ACTIVE / BOOKMARKED STATE */
+.bookmark-btn.bookmarked {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.bookmark-btn.bookmarked:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: white;
+}
+
+/* Remove button (in bookmarks page) */
+.remove-bookmark-btn {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: 6px;
+    border: 1px solid var(--danger);
+    background-color: transparent;
+    color: var(--danger);
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.remove-bookmark-btn:hover {
+    background-color: var(--danger);
+    color: white;
+}
+
+/* Fix spacing inside small course cards */
+.course-content .bookmark-btn,
+.certification-content .bookmark-btn {
+    margin-top: 1rem;
+}
+/* -----------------------------
+   DASHBOARD
+----------------------------- */
+
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card h3 {
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+.stat-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.dashboard-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.2);
+}

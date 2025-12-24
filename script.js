@@ -1,8 +1,11 @@
-// Application State
+// ----------------------
+//   APPLICATION STATE
+// ----------------------
 const state = {
     currentUser: null,
     currentPage: 'home',
     currentTheme: 'light',
+
     quizData: [
         {
             question: "Which field are you most interested in?",
@@ -13,8 +16,8 @@ const state = {
             options: ["Beginner", "Intermediate", "Advanced", "Expert"]
         },
         {
-            question: "How much time can you dedicate to learning per week?",
-            options: ["1-5 hours", "5-10 hours", "10-20 hours", "20+ hours"]
+            question: "How much time can you dedicate per week?",
+            options: ["1–5 hours", "5–10 hours", "10–20 hours", "20+ hours"]
         },
         {
             question: "What is your primary learning goal?",
@@ -22,19 +25,19 @@ const state = {
         },
         {
             question: "Which learning format do you prefer?",
-            options: ["Self-paced online", "Structured with deadlines", "In-person classes", "Mixed format"]
+            options: ["Self-paced online", "Structured", "In-person", "Mixed"]
         }
     ],
+
     courseDatabase: [
         {
             id: 1,
             title: "Web Development Fundamentals",
-            description: "Learn HTML, CSS, and JavaScript to build responsive websites from scratch.",
+            description: "Learn HTML, CSS, and JavaScript to build responsive websites.",
             duration: "8 weeks",
             level: "Beginner",
             field: "Technology",
-            tags: ["programming", "frontend", "web"],
-            jobs: ["Frontend Developer", "Web Designer", "UI Engineer"],
+            jobs: ["Frontend Developer", "Web Designer"],
             cheatsheet: "https://web.dev/learn/css/",
             youtube: [
                 "https://www.youtube.com/watch?v=UB1O30fR-EE",
@@ -46,12 +49,11 @@ const state = {
         {
             id: 2,
             title: "Data Science Essentials",
-            description: "Master data analysis, visualization, and basic machine learning concepts.",
+            description: "Master data analysis, visualization, and ML basics.",
             duration: "10 weeks",
             level: "Intermediate",
             field: "Technology",
-            tags: ["data", "analysis", "python", "statistics"],
-            jobs: ["Data Analyst", "Machine Learning Engineer", "Business Intelligence Analyst"],
+            jobs: ["Data Analyst", "ML Engineer"],
             cheatsheet: "https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf",
             youtube: [
                 "https://www.youtube.com/watch?v=ua-CiDNNj30",
@@ -63,12 +65,11 @@ const state = {
         {
             id: 3,
             title: "UI/UX Design Principles",
-            description: "Create intuitive and beautiful user interfaces with proven design methodologies.",
+            description: "Design intuitive interfaces with proper UX workflows.",
             duration: "6 weeks",
             level: "Beginner",
             field: "Design",
-            tags: ["design", "interface", "user experience"],
-            jobs: ["UI Designer", "UX Researcher", "Product Designer"],
+            jobs: ["UI Designer", "Product Designer"],
             cheatsheet: "https://www.smashingmagazine.com/2018/01/ux-cheat-sheet/",
             youtube: [
                 "https://www.youtube.com/watch?v=Ovj4hFxko7c",
@@ -148,7 +149,7 @@ const state = {
         {
             id: 8,
             title: "Machine Learning Basics",
-            description: "Introduction to machine learning algorithms and their practical applications.",
+            description: "Supervised and unsupervised ML fundamentals.",
             duration: "12 weeks",
             level: "Advanced",
             field: "Technology",
@@ -163,10 +164,13 @@ const state = {
             image: "https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=800"
         }
     ],
+
     userAnswers: []
 };
 
-// DOM Elements
+// ----------------------
+//   DOM ELEMENTS
+// ----------------------
 const elements = {
     authButtons: document.getElementById('authButtons'),
     userProfile: document.getElementById('userProfile'),
@@ -176,74 +180,67 @@ const elements = {
     loginBtn: document.getElementById('loginBtn'),
     signupBtn: document.getElementById('signupBtn'),
     startQuizBtn: document.getElementById('startQuizBtn'),
+
     progressBar: document.getElementById('progressBar'),
     quizContent: document.getElementById('quizContent'),
     loginPage: document.getElementById('loginPage'),
     signupPage: document.getElementById('signupPage'),
+
     goToLogin: document.getElementById('goToLogin'),
     goToSignup: document.getElementById('goToSignup'),
     loginSubmit: document.getElementById('loginSubmit'),
     signupSubmit: document.getElementById('signupSubmit'),
+
     recommendedCoursesList: document.getElementById('recommendedCoursesList'),
     themeToggle: document.getElementById('themeToggle')
 };
 
-// Theme functions
+
+// ----------------------
+//   THEME HANDLING
+// ----------------------
 function toggleTheme() {
-    if (state.currentTheme === 'light') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        state.currentTheme = 'dark';
-        elements.themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        localStorage.setItem('theme', 'dark');
+    if (state.currentTheme === "light") {
+        document.documentElement.setAttribute("data-theme", "dark");
+        state.currentTheme = "dark";
+        localStorage.setItem("theme", "dark");
+        elements.themeToggle.innerHTML = `<i class="fas fa-sun"></i>`;
     } else {
-        document.documentElement.removeAttribute('data-theme');
-        state.currentTheme = 'light';
-        elements.themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        localStorage.setItem('theme', 'light');
+        document.documentElement.removeAttribute("data-theme");
+        state.currentTheme = "light";
+        localStorage.setItem("theme", "light");
+        elements.themeToggle.innerHTML = `<i class="fas fa-moon"></i>`;
     }
 }
 
 function loadTheme() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        state.currentTheme = 'dark';
-        elements.themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    } else {
-        document.documentElement.removeAttribute('data-theme');
-        state.currentTheme = 'light';
-        elements.themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    const saved = localStorage.getItem("theme");
+    if (saved === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+        state.currentTheme = "dark";
+        elements.themeToggle.innerHTML = `<i class="fas fa-sun"></i>`;
     }
 }
 
-// Navigation functions
+
+// ----------------------
+//   NAVIGATION
+// ----------------------
 function showPage(pageId) {
-    // Hide all pages
-    document.querySelectorAll('.active-page, .auth-page').forEach(page => {
-        page.style.display = 'none';
-    });
-    
-    // Show the requested page
-    document.getElementById(pageId).style.display = 'block';
-    
-    // Special handling for section pages
-    if (pageId === 'home' || pageId === 'how-it-works' || pageId === 'quiz' || 
-        pageId === 'recommended-courses') {
-        document.getElementById(pageId).classList.add('section');
-    }
-    
-    state.currentPage = pageId;
-}
-
-function navigateTo(sectionId) {
-    if (sectionId === 'quiz') {
-        startQuiz();
-    }
-    showPage(sectionId);
+    document.querySelectorAll(".active-page, .auth-page").forEach(p => p.style.display = "none");
+    document.getElementById(pageId).style.display = "block";
     window.scrollTo(0, 0);
 }
 
-// Authentication functions
+function navigateTo(id) {
+    if (id === "quiz") startQuiz();
+    showPage(id);
+}
+
+
+// ----------------------
+//   AUTH (LOGIN / SIGNUP)
+// ----------------------
 function loginUser(email, password) {
     if (!email || !password) {
         alert('Please enter both email and password');
@@ -251,8 +248,8 @@ function loginUser(email, password) {
     }
     
     state.currentUser = {
-        name: email.split('@')[0],
-        email: email
+        name: email.split("@")[0],
+        email
     };
     
     elements.userAvatar.textContent = state.currentUser.name.charAt(0).toUpperCase();
@@ -285,12 +282,15 @@ function signupUser(name, email, password) {
 function logoutUser() {
     state.currentUser = null;
     state.userAnswers = [];
-    document.getElementById('authButtons').style.display = 'flex';
-    elements.userProfile.style.display = 'none';
-    showPage('home');
+    elements.userProfile.style.display = "none";
+    elements.authButtons.style.display = "flex";
+    showPage("home");
 }
 
-// Quiz functions
+
+// ----------------------
+//   QUIZ SYSTEM
+// ----------------------
 function startQuiz() {
     state.userAnswers = [];
     showQuizQuestion(0);
@@ -318,14 +318,11 @@ function showQuizQuestion(index) {
     });
     
     elements.quizContent.innerHTML = `
-        <div class="question">
-            <h3>${question.question}</h3>
-            <div class="options">
-                ${optionsHTML}
-            </div>
+        <div class="question"><h3>${q.question}</h3>
+            <div class="options">${options}</div>
         </div>
         <div class="quiz-navigation">
-            ${index > 0 ? '<button class="btn btn-outline" id="prevQuestion">Previous</button>' : '<div></div>'}
+            ${index > 0 ? `<button class="btn btn-outline" id="prevQuestion">Previous</button>` : `<div></div>`}
             <button class="btn btn-primary" id="nextQuestion" disabled>Next</button>
         </div>
     `;
@@ -347,16 +344,43 @@ function showQuizQuestion(index) {
     
     // Navigation buttons
     if (index > 0) {
-        document.getElementById('prevQuestion').addEventListener('click', function() {
-            showQuizQuestion(index - 1);
-        });
+        document.getElementById("prevQuestion").addEventListener("click", () =>
+            showQuizQuestion(index - 1)
+        );
     }
-    
-    document.getElementById('nextQuestion').addEventListener('click', function() {
-        showQuizQuestion(index + 1);
-    });
+
+    document.getElementById("nextQuestion").addEventListener("click", () =>
+        showQuizQuestion(index + 1)
+    );
+}
+// ----------------------
+//   RECOMMENDATION ENGINE
+// ----------------------
+function calculateRecommendations() {
+    const fieldInterest = state.userAnswers[0];
+    const skillLevel = state.userAnswers[1];
+
+    let filtered = state.courseDatabase.filter(course =>
+        course.field === fieldInterest && course.level === skillLevel
+    );
+
+    if (filtered.length < 3) {
+        filtered = state.courseDatabase.filter(course =>
+            course.field === fieldInterest
+        );
+    }
+
+    if (filtered.length < 3) {
+        filtered = [...state.courseDatabase].sort(() => 0.5 - Math.random());
+    }
+
+    return filtered.slice(0, 4);
 }
 
+
+// ----------------------
+//   SHOW RECOMMENDED COURSES
+// ----------------------
 function showRecommendations() {
     const recommendations = calculateRecommendations();
 
@@ -370,13 +394,19 @@ function showRecommendations() {
                     <img src="${course.image}" alt="${course.title}">
                 </div>
                 <div class="course-content">
-                    <h3 class="course-title">${course.title}</h3>
-                    <p class="course-description">${course.description}</p>
+                    <h3 class="course-title">${c.title}</h3>
+                    <p class="course-description">${c.description}</p>
                     <div class="course-meta">
-                        <span><i class="far fa-clock"></i> ${course.duration}</span>
-                        <span><i class="fas fa-user-graduate"></i> ${course.level}</span>
+                        <span><i class="far fa-clock"></i> ${c.duration}</span>
+                        <span><i class="fas fa-user-graduate"></i> ${c.level}</span>
                     </div>
+
+                    <!-- ⭐ Bookmark Button -->
+                    <button class="btn bookmark-btn" data-id="course-${c.id}">
+                        <i class="fas fa-bookmark"></i> Bookmark
+                    </button>
                 </div>
+
                 <div class="course-details" style="display:none;"></div>
             </div>
         `;
@@ -413,7 +443,8 @@ function showRecommendations() {
                     <a href="${course.roadmap}" target="_blank">${course.roadmap}</a>
                 </div>
             `;
-            detailsDiv.style.display = 'block';
+
+            details.style.display = "block";
         });
     });
 }
@@ -439,66 +470,238 @@ function calculateRecommendations() {
     return filteredCourses.slice(0, 4);
 }
 
-// Event Listeners
-document.addEventListener('DOMContentLoaded', function() {
-    // Load saved theme
+// ----------------------
+//   GLOBAL EVENT LISTENERS
+// ----------------------
+document.addEventListener("DOMContentLoaded", () => {
     loadTheme();
-    
-    // Theme toggle
-    elements.themeToggle.addEventListener('click', toggleTheme);
-    
-    // Navigation
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', function(e) {
+
+    elements.themeToggle.addEventListener("click", toggleTheme);
+
+    // NAVBAR LINKS
+    document.querySelectorAll(".nav-links a").forEach(link => {
+        link.addEventListener("click", e => {
             e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            navigateTo(targetId);
+            const id = link.getAttribute("href").substring(1);
+            navigateTo(id);
         });
     });
-    
-    // Authentication
-    elements.loginBtn.addEventListener('click', function() {
-        showPage('loginPage');
+
+    // LOGIN/SIGNUP clicks
+    elements.loginBtn.addEventListener("click", () => showPage("loginPage"));
+    elements.signupBtn.addEventListener("click", () => showPage("signupPage"));
+
+    elements.goToLogin.addEventListener("click", e => {
+        e.preventDefault();
+        showPage("loginPage");
     });
-    
-    elements.signupBtn.addEventListener('click', function() {
-        showPage('signupPage');
+
+    elements.goToSignup.addEventListener("click", e => {
+        e.preventDefault();
+        showPage("signupPage");
     });
-    
-    elements.logoutBtn.addEventListener('click', logoutUser);
-    
-    elements.startQuizBtn.addEventListener('click', function() {
+
+    // AUTH SUBMIT
+    elements.loginSubmit.addEventListener("click", () => {
+        loginUser(
+            document.getElementById("loginEmail").value,
+            document.getElementById("loginPassword").value
+        );
+    });
+
+    elements.signupSubmit.addEventListener("click", () => {
+        signupUser(
+            document.getElementById("signupName").value,
+            document.getElementById("signupEmail").value,
+            document.getElementById("signupPassword").value
+        );
+    });
+
+    elements.logoutBtn.addEventListener("click", logoutUser);
+
+    elements.startQuizBtn.addEventListener("click", () => {
         if (!state.currentUser) {
-            showPage('loginPage');
-            alert('Please login first to take the quiz');
+            alert("Please login first");
+            showPage("loginPage");
             return;
         }
         startQuiz();
-        showPage('quiz');
+        showPage("quiz");
     });
-    
-    elements.goToLogin.addEventListener('click', function(e) {
-        e.preventDefault();
-        showPage('loginPage');
+
+    initCertificationCardClickable();
+});
+
+
+// ----------------------
+//   CERTIFICATION CARDS → CLICKABLE CARDS
+// ----------------------
+function initCertificationCardClickable() {
+    document.querySelectorAll(".certification-card").forEach(card => {
+        const link = card.querySelector("a.btn-primary");
+        if (!link) return;
+
+        card.style.cursor = "pointer";
+        card.setAttribute("tabindex", "0");
+
+        card.addEventListener("click", e => {
+            if (e.target.closest(".bookmark-btn")) return;
+            if (e.target.tagName === "A") return;
+            window.open(link.href, "_blank");
+        });
+
+        card.addEventListener("keydown", e => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                window.open(link.href, "_blank");
+            }
+        });
     });
-    
-    elements.goToSignup.addEventListener('click', function(e) {
-        e.preventDefault();
-        showPage('signupPage');
+}
+// ---------------------------------------------
+// BOOKMARK SYSTEM
+// ---------------------------------------------
+
+// Ensure bookmarks array exists in localStorage
+if (!localStorage.getItem("bookmarks")) {
+    localStorage.setItem("bookmarks", JSON.stringify([]));
+}
+
+function getBookmarks() {
+    return JSON.parse(localStorage.getItem("bookmarks")) || [];
+}
+
+function saveBookmarks(list) {
+    localStorage.setItem("bookmarks", JSON.stringify(list));
+}
+
+function addBookmark(item) {
+    const bookmarks = getBookmarks();
+    if (bookmarks.some(b => b.id === item.id)) return; // avoid duplicates
+    bookmarks.push(item);
+    saveBookmarks(bookmarks);
+}
+
+function removeBookmark(id) {
+    let bookmarks = getBookmarks();
+    bookmarks = bookmarks.filter(b => b.id !== id);
+    saveBookmarks(bookmarks);
+}
+
+function isBookmarked(id) {
+    const bookmarks = getBookmarks();
+    return bookmarks.some(b => b.id === id);
+}
+
+function toggleBookmark(item) {
+    if (!item || !item.id) return;
+
+    if (isBookmarked(item.id)) {
+        removeBookmark(item.id);
+    } else {
+        addBookmark(item);
+    }
+    updateAllBookmarkButtons();
+}
+
+
+// ---------------------------------------------
+// INIT + UPDATE BOOKMARK BUTTONS
+// ---------------------------------------------
+function updateAllBookmarkButtons() {
+    document.querySelectorAll(".bookmark-btn").forEach(btn => {
+        const id = btn.dataset.id;
+        if (isBookmarked(id)) {
+            btn.innerHTML = `<i class="fas fa-check"></i> Bookmarked`;
+            btn.classList.add("bookmarked");
+        } else {
+            btn.innerHTML = `<i class="fas fa-bookmark"></i> Bookmark`;
+            btn.classList.remove("bookmarked");
+        }
     });
-    
-    elements.loginSubmit.addEventListener('click', function() {
-        const email = document.getElementById('loginEmail').value;
-        const password = document.getElementById('loginPassword').value;
-        loginUser(email, password);
+}
+
+function initBookmarkButtons() {
+    document.querySelectorAll(".bookmark-btn").forEach(btn => {
+        // prevent attaching multiple listeners to the same button
+        if (btn.dataset.bookmarkListenerAttached === "true") return;
+
+        btn.addEventListener("click", e => {
+            e.stopPropagation(); // don't trigger card click
+            e.preventDefault();
+
+            const id = btn.dataset.id;
+            let item = null;
+
+            // Course bookmark (home / recommended)
+            if (id.startsWith("course-")) {
+                const numericId = parseInt(id.split("-")[1], 10);
+                const course = state.courseDatabase.find(c => c.id === numericId);
+                if (!course) return;
+                item = {
+                    id: id,
+                    type: "course",
+                    title: course.title,
+                    image: course.image
+                };
+            }
+
+            // Certification bookmark
+            else if (id.startsWith("cert-")) {
+                const card = btn.closest(".certification-card");
+                if (!card) return;
+                const titleEl = card.querySelector(".certification-title");
+                const imgEl = card.querySelector("img");
+                if (!titleEl || !imgEl) return;
+
+                item = {
+                    id: id,
+                    type: "cert",
+                    title: titleEl.innerText.trim(),
+                    image: imgEl.src
+                };
+            }
+
+            toggleBookmark(item);
+        });
+
+        btn.dataset.bookmarkListenerAttached = "true";
     });
-    
-    elements.signupSubmit.addEventListener('click', function() {
-        const name = document.getElementById('signupName').value;
-        const email = document.getElementById('signupEmail').value;
-        const password = document.getElementById('signupPassword').value;
-        signupUser(name, email, password);
+
+    updateAllBookmarkButtons();
+}
+
+
+// ---------------------------------------------
+// INJECT BOOKMARK BUTTONS INTO EXISTING CARDS
+// ---------------------------------------------
+
+// 1) Home → Popular Courses (static in HTML)
+function injectHomeCourseBookmarkButtons() {
+    const homeSection = document.getElementById("home");
+    if (!homeSection) return;
+
+    const cards = homeSection.querySelectorAll(".course-card");
+    cards.forEach(card => {
+        const content = card.querySelector(".course-content");
+        const titleEl = card.querySelector(".course-title");
+        if (!content || !titleEl) return;
+
+        const titleText = titleEl.innerText.trim();
+        const course = state.courseDatabase.find(c => c.title === titleText);
+        if (!course) return;
+
+        // Avoid duplicate bookmark button
+        if (content.querySelector(".bookmark-btn")) return;
+
+        const btn = document.createElement("button");
+        btn.className = "btn bookmark-btn";
+        btn.dataset.id = `course-${course.id}`;
+        btn.innerHTML = `<i class="fas fa-bookmark"></i> Bookmark`;
+
+        content.appendChild(btn);
     });
+}
 
     // Certification cards clickable & keyboard accessible
     (function makeCertificationCardsClickable() {
@@ -522,7 +725,34 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-    })();
+    }
+
+    showPage("bookmarks");
+}
+
+
+// ---------------------------------------------
+// HOOK NAVBAR "BOOKMARKS" LINK
+// ---------------------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+    // Make sure section exists
+    ensureBookmarksSectionExists();
+
+    // Inject bookmark buttons into existing cards
+    injectHomeCourseBookmarkButtons();
+    injectCertificationBookmarkButtons();
+
+    // Initialize button behaviors
+    initBookmarkButtons();
+
+    // Hook navbar Bookmarks link (if present)
+    const bookmarksNavLink = document.querySelector('a[href="#bookmarks"]');
+    if (bookmarksNavLink) {
+        bookmarksNavLink.addEventListener("click", e => {
+            e.preventDefault();
+            showBookmarks();
+        });
+    }
 });
 
 // Currently unused, but kept if you plan backend integration
