@@ -16,7 +16,7 @@
 | 12    | Project Interaction - Demo with Guide (Frontend) | 3-10-2025   |
 | 13    | Implementation Progress – 3 / Project Monitoring – 2.                 | 14-10-2025  |
 | 14    | Add a certificate button / (change in navbar)               | 11-11-2025  |
-| 14    | Add a certificate button / (change in navbar)               | 11-11-2025  |
+| 15    | Final the Frontend                | 10-12-2025  |
 
 ---
 
