@@ -161,33 +161,72 @@ function navigateTo(id) {
 //   AUTH (LOGIN / SIGNUP)
 // ----------------------
 function loginUser(email, password) {
-    if (!email || !password) return alert("Enter email & password");
+    if (!email || !password) {
+        alert("Enter email & password");
+        return;
+    }
 
-    state.currentUser = {
-        name: email.split("@")[0],
-        email
-    };
+    fetch("http://127.0.0.1:5000/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+    })
+    .then(res => res.json())
+    .then(user => {
+        console.log("Login:", user);
 
-    elements.authButtons.style.display = "none";
-    elements.userProfile.style.display = "flex";
-    elements.userAvatar.textContent = state.currentUser.name[0].toUpperCase();
-    elements.username.textContent = state.currentUser.name;
+        localStorage.setItem("userEmail", user.email);
 
-    showPage("home");
+        state.currentUser = user;
+
+        elements.authButtons.style.display = "none";
+        elements.userProfile.style.display = "flex";
+        elements.userAvatar.textContent = user.name[0].toUpperCase();
+        elements.username.textContent = user.name;
+
+        showPage("home");
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Login failed");
+    });
 }
+
 
 function signupUser(name, email, password) {
-    if (!name || !email || !password) return alert("Fill all fields");
+    if (!name || !email || !password) {
+        alert("Fill all fields");
+        return;
+    }
 
-    state.currentUser = { name, email };
+    fetch("http://127.0.0.1:5000/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password })
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("Signup:", data);
 
-    elements.authButtons.style.display = "none";
-    elements.userProfile.style.display = "flex";
-    elements.userAvatar.textContent = name[0].toUpperCase();
-    elements.username.textContent = name;
+        // SAVE EMAIL FOR QUIZ & BOOKMARK
+        localStorage.setItem("userEmail", email);
 
-    showPage("home");
+        state.currentUser = { name, email };
+
+        elements.authButtons.style.display = "none";
+        elements.userProfile.style.display = "flex";
+        elements.userAvatar.textContent = name[0].toUpperCase();
+        elements.username.textContent = name;
+
+        showPage("home");
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Signup failed");
+    });
 }
+
+
 
 function logoutUser() {
     state.currentUser = null;
@@ -207,11 +246,15 @@ function startQuiz() {
 }
 
 function showQuizQuestion(index) {
-    if (index >= state.quizData.length) {
-        elements.progressBar.style.width = "100%";
-        showRecommendations();
-        return;
-    }
+   if (index >= state.quizData.length) {
+    elements.progressBar.style.width = "100%";
+
+    // ✅ SAVE QUIZ TO BACKEND
+    saveQuizAnswers(state.userAnswers);
+
+    showRecommendations();
+    return;
+}
 
     const q = state.quizData[index];
     const pct = (index / state.quizData.length) * 100;
@@ -279,6 +322,7 @@ function calculateRecommendations() {
 //   SHOW RECOMMENDED COURSES
 // ----------------------
 function showRecommendations() {
+    saveQuizAnswers(state.userAnswers);
     const recommended = calculateRecommendations();
     showPage("recommended-courses");
 
@@ -476,16 +520,19 @@ function isBookmarked(id) {
     return bookmarks.some(b => b.id === id);
 }
 
-function toggleBookmark(item) {
+    function toggleBookmark(item) {
     if (!item || !item.id) return;
 
     if (isBookmarked(item.id)) {
         removeBookmark(item.id);
     } else {
         addBookmark(item);
+        saveBookmark(item); //  SAVE TO DB
     }
     updateAllBookmarkButtons();
 }
+
+
 
 
 // ---------------------------------------------
@@ -779,4 +826,54 @@ function navigateTo(id) {
     if (id === "dashboard") {
         renderDashboard();
     }
+}
+function saveQuizAnswers(quizAnswers) {
+  const email = localStorage.getItem("userEmail");
+
+  fetch("http://127.0.0.1:5000/api/quiz/save", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: email,
+      quizAnswers: quizAnswers
+    })
+  })
+  .then(res => res.json())
+  .then(data => console.log("Quiz saved:", data));
+}
+
+
+// Example quiz completion
+function onQuizComplete() {
+  const quizAnswers = [
+    "Technology",
+    "Beginner",
+    "5-10 hours"
+  ];
+
+  saveQuizAnswers(quizAnswers);
+}
+function saveBookmark(course) {
+  const email = localStorage.getItem("userEmail");
+
+  fetch("http://127.0.0.1:5000/api/bookmark/save", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: email,
+      course: course
+    })
+  })
+  .then(res => res.json())
+  .then(data => console.log("Bookmark saved:", data));
+}
+// Example bookmark button
+function onBookmarkClick() {
+  const course = {
+    title: "Web Development Fundamentals",
+    level: "Beginner",
+    duration: "8 weeks"
+  };
+
+  saveBookmark(course);
 }
