@@ -165,31 +165,18 @@ function loginUser(email, password) {
         alert("Enter email & password");
         return;
     }
-
-    fetch("http://127.0.0.1:5000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password })
-    })
-    .then(res => res.json())
-    .then(user => {
-        console.log("Login:", user);
-
-        localStorage.setItem("userEmail", user.email);
-
-        state.currentUser = user;
-
-        elements.authButtons.style.display = "none";
-        elements.userProfile.style.display = "flex";
-        elements.userAvatar.textContent = user.name[0].toUpperCase();
-        elements.username.textContent = user.name;
-
-        showPage("home");
-    })
-    .catch(err => {
-        console.error(err);
-        alert("Login failed");
-    });
+    
+    state.currentUser = {
+        name: email.split("@")[0],
+        email
+    };
+    
+    elements.userAvatar.textContent = state.currentUser.name.charAt(0).toUpperCase();
+    elements.username.textContent = state.currentUser.name;
+    document.getElementById('authButtons').style.display = 'none';
+    elements.userProfile.style.display = 'flex';
+    
+    showPage('home');
 }
 
 
@@ -520,19 +507,16 @@ function isBookmarked(id) {
     return bookmarks.some(b => b.id === id);
 }
 
-    function toggleBookmark(item) {
+function toggleBookmark(item) {
     if (!item || !item.id) return;
 
     if (isBookmarked(item.id)) {
         removeBookmark(item.id);
     } else {
         addBookmark(item);
-        saveBookmark(item); //  SAVE TO DB
     }
     updateAllBookmarkButtons();
 }
-
-
 
 
 // ---------------------------------------------
@@ -627,26 +611,6 @@ function injectHomeCourseBookmarkButtons() {
         const btn = document.createElement("button");
         btn.className = "btn bookmark-btn";
         btn.dataset.id = `course-${course.id}`;
-        btn.innerHTML = `<i class="fas fa-bookmark"></i> Bookmark`;
-
-        content.appendChild(btn);
-    });
-}
-
-// 2) Certifications (static in HTML)
-function injectCertificationBookmarkButtons() {
-    const certCards = document.querySelectorAll(".certification-card");
-
-    certCards.forEach((card, index) => {
-        const content = card.querySelector(".certification-content");
-        if (!content) return;
-
-        // Avoid duplicate
-        if (content.querySelector(".bookmark-btn")) return;
-
-        const btn = document.createElement("button");
-        btn.className = "btn bookmark-btn";
-        btn.dataset.id = `cert-${index}`;
         btn.innerHTML = `<i class="fas fa-bookmark"></i> Bookmark`;
 
         content.appendChild(btn);
